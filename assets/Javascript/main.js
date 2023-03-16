@@ -1,40 +1,40 @@
-const box1 = document.querySelector('#box1')
-const box2 = document.querySelector('#box2')
-const box3 = document.querySelector('#box3')
-const box4 = document.querySelector('#box4')
-const box5 = document.querySelector('#box5')
+const btnNext = document.getElementById('next');
+const btnPrev = document.getElementById('prev');
+const barraDeProgresso = document.getElementById('progress');
+const steps = document.querySelectorAll('.step')
 
-const dimuiTodos =() =>{
-    box1.style.width = '7%'
-    box2.style.width = '7%'
-    box3.style.width = '7%'
-    box4.style.width = '7%'
-    box5.style.width = '7%'
+contador = 1;
+function alterarBarra(){
+    if(contador === 1){
+        barraDeProgresso.style.width = '0%';
+        btnPrev.disabled = true
+        btnNext.disabled = false;
+        steps[1].classList.remove('circle-active');
+    } 
+    if(contador === 2){
+        barraDeProgresso.style.width = '33%';
+        btnPrev.disabled = false;
+        steps[1].classList.add('circle-active');
+        steps[2].classList.remove('circle-active');
+    } 
+    if(contador === 3){
+        barraDeProgresso.style.width = '66%';
+        steps[2].classList.add('circle-active');
+        steps[3].classList.remove('circle-active');
+    } 
+    if(contador === 4){
+        barraDeProgresso.style.width = '99%';
+        steps[3].classList.add('circle-active');
+        btnNext.disabled = true;
+    } 
 }
 
-const verifica =(e) =>{
-    if(e.target == box1){
-        dimuiTodos()
-        box1.style.width = '70%'
-        
-    }
-    if(e.target == box2){
-        dimuiTodos()
-        box2.style.width = '70%'
-    }
-    if(e.target == box3){
-        dimuiTodos()
-        box3.style.width = '70%'
-    }
-    if(e.target == box4){
-        dimuiTodos()
-        box4.style.width = '70%'
-    }
-    if(e.target == box5){
-        dimuiTodos()
-        box5.style.width = '70%'
-    }
-}
+btnPrev.addEventListener('click', ()=>{
+    contador--
+    alterarBarra()
+})
 
-
-document.addEventListener('click', verifica)
+btnNext.addEventListener("click", ()=>{
+    contador++;
+    alterarBarra()
+})

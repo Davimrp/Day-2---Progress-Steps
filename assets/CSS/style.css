@@ -40,6 +40,7 @@ body{
     position: absolute;
     z-index: -99;
     left: 0px;
+    transition: all .5s;
 }
 .step::after{
     content: '';
@@ -81,4 +82,5 @@ button:active{
 
 .circle-active{
     border-color: #3498DB;
+    transition: all .7s ease-in;
 }
